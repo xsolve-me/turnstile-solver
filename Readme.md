@@ -34,24 +34,35 @@ We offer high-performance solvers at competitive prices:
 | Available Task | Task Identifier | Price (per 1k requests) |
 | :--- | :--- | :--- |
 | **Cloudflare Turnstile** | `task.turnstile` | **$0.08** |
-| **Cloudflare IUAM** *(Currently down)* | `task.iuam` | **$0.08** |
+| **Cloudflare IUAM** | `task.iuam` | **$0.08** |
 
 * ⚡ **Cost:** **$0.00008** per one solve
 * ✔️ **Only pay for successful solves**
 * 🪙 **Payment Method:** **Cryptocurrency**
 
-### 💳 Deposit Value Examples
+### 💳 Deposit Bonuses
+
+Get extra balance when you deposit more! Maximum deposit: **$500**.
+
+| Deposit Range | Bonus | Example |
+| :--- | :--- | :--- |
+| Under $25 | 0% | $10 → $10 balance |
+| $25 – $49 | **20%** | $30 → $36 balance |
+| $50 – $99 | **30%** | $75 → $97.50 balance |
+| $100 – $500 | **40%** | $200 → $280 balance |
+
+### 💰 Deposit Value Examples
 
 That's over **12,500** CAPTCHAs solved for just a single dollar!
 
-| Deposit Amount | Solves / Tokens |
-| :--- | :--- |
-| **$1** | 12,500 (12.5k) |
-| **$5** | 62,500 (62.5k) |
-| **$10** | 125,000 (125k) |
-| **$20** | 250,000 (250k) |
-| **$50** | 625,000 (625k) |
-| **$100** | 1,250,000 (1.25m) |
+| Deposit Amount | Bonus | Total Balance | Solves / Tokens |
+| :--- | :--- | :--- | :--- |
+| **$1** | — | $1 | 12,500 (12.5k) |
+| **$5** | — | $5 | 62,500 (62.5k) |
+| **$25** | +$5 | $30 | 375,000 (375k) |
+| **$50** | +$15 | $65 | 812,500 (812.5k) |
+| **$100** | +$40 | $140 | 1,750,000 (1.75m) |
+| **$500** | +$200 | $700 | 8,750,000 (8.75m) |
 
 ## 🚀 Quick Integration (Python)
 
