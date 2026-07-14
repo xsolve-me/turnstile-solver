@@ -96,6 +96,6 @@ For full API documentation, other languages (Curl, JavaScript), and custom integ
 
 ## 💬 Community & Support
 
-- **Telegram Channel:** [https://t.me/rex_update](https://t.me/rex_update)
+- **Telegram Channel:** [https://t.me/xsolveupdates](https://t.me/xsolveupdates)
 
 * **Discord Server:** [https://discord.gg/eM6wqY7z53](https://discord.gg/eM6wqY7z53)
