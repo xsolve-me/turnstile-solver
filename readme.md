@@ -1,15 +1,15 @@
-# Xsolve — Cloudflare Turnstile & IUAM Solver API
+# Xsolve - Cloudflare Turnstile & IUAM Solver API
 
 [![Website](https://img.shields.io/badge/Website-xsolve.me-0ea5e9?style=for-the-badge)](https://xsolve.me)
 [![Docs](https://img.shields.io/badge/Docs-docs.xsolve.me-22c55e?style=for-the-badge)](https://docs.xsolve.me/)
 [![Telegram](https://img.shields.io/badge/Telegram-@xsolveupdates-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/xsolveupdates)
 [![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/eM6wqY7z53)
 
-Low-latency HTTP API for **Cloudflare Turnstile** and **Cloudflare IUAM (Under Attack Mode)**. Send a JSON request, get a token or clearance cookie back — typically in **1–4 seconds**.
+Low-latency HTTP API for **Cloudflare Turnstile** and **Cloudflare IUAM (Under Attack Mode)**. Send a JSON request, get a token or clearance cookie back, typically in **1-4 seconds**.
 
 | Requests processed | Target uptime | Average solve time | Price |
 | :----------------: | :-----------: | :----------------: | :---: |
-| 50k+ | 99.9% | &lt; 3s | **$0.08 / 1k** |
+| 500m+ | 99.9% | &lt; 3s | **$0.08 / 1k** |
 
 You only pay for successful solves.
 
@@ -17,7 +17,7 @@ You only pay for successful solves.
 
 ## Request Example
 
-![Xsolve request history showing Turnstile solves around 1.1–1.7s at $0.00008 each](image.png)
+![Xsolve request history showing Turnstile solves around 1.1-1.7s at $0.00008 each](image.png)
 
 Balance, API keys, and live request history live in one place: [xsolve.me](https://xsolve.me).
 
@@ -25,12 +25,12 @@ Balance, API keys, and live request history live in one place: [xsolve.me](https
 
 ## Features
 
-- **Fast** — Typical solve time is 1–4 seconds
-- **Two task types** — Turnstile (`task.turnstile`) and IUAM (`task.iuam`)
-- **Pay for success only** — Failed solves are not billed
-- **Simple JSON API** — One `POST` to `https://api.xsolve.me/task`
-- **Proxy support** — HTTP, HTTPS, and SOCKS5
-- **Drop-in migration** — Coming from Solverify, NSLSolver, or CapSolver? Change the base URL and API key
+- **Fast:** Typical solve time is 1-4 seconds
+- **Two task types:** Turnstile (`task.turnstile`) and IUAM (`task.iuam`)
+- **Pay for success only:** Failed solves are not billed
+- **Simple JSON API:** One `POST` to `https://api.xsolve.me/task`
+- **Proxy support:** HTTP, HTTPS, and SOCKS5
+- **Drop-in migration:** Coming from Solverify, NSLSolver, or CapSolver? Change the base URL and API key
 
 ---
 
@@ -57,10 +57,10 @@ Balance, API keys, and live request history live in one place: [xsolve.me](https
 
 | Deposit | Bonus | Example |
 | ------- | ----- | ------- |
-| Under $25 | — | $10 → $10 |
-| $25 – $49 | **20%** | $30 → $36 |
-| $50 – $99 | **30%** | $75 → $97.50 |
-| $100 – $500 | **40%** | $200 → $280 |
+| Under $25 | - | $10 -> $10 |
+| $25 - $49 | **20%** | $30 -> $36 |
+| $50 - $99 | **30%** | $75 -> $97.50 |
+| $100 - $500 | **40%** | $200 -> $280 |
 
 ### What $1 actually buys
 
@@ -68,8 +68,8 @@ About **12,500** successful solves per dollar at the base rate.
 
 | Deposit | Bonus | Balance | Solves |
 | ------- | ----- | ------- | ------ |
-| $1 | — | $1 | 12,500 |
-| $5 | — | $5 | 62,500 |
+| $1 | - | $1 | 12,500 |
+| $5 | - | $5 | 62,500 |
 | $25 | +$5 | $30 | 375,000 |
 | $50 | +$15 | $65 | 812,500 |
 | $100 | +$40 | $140 | 1,750,000 |
