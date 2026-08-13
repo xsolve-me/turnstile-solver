@@ -1,101 +1,199 @@
-# Cloudflare Challenge Solver (Turnstile & IUAM)
+# Xsolve — Cloudflare Turnstile & IUAM Solver API
 
-[![Website](https://img.shields.io/badge/Website-xsolve.me-blue?style=for-the-badge&logo=google-chrome)](https://xsolve.me)
-[![Documentation](https://img.shields.io/badge/Docs-docs.xsolve.me-green?style=for-the-badge&logo=gitbook)](https://docs.xsolve.me/)
+[![Website](https://img.shields.io/badge/Website-xsolve.me-0ea5e9?style=for-the-badge)](https://xsolve.me)
+[![Docs](https://img.shields.io/badge/Docs-docs.xsolve.me-22c55e?style=for-the-badge)](https://docs.xsolve.me/)
+[![Telegram](https://img.shields.io/badge/Telegram-@xsolveupdates-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/xsolveupdates)
+[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/eM6wqY7z53)
 
-A high-performance, ultra-fast API solver for **Cloudflare Turnstile** and **Cloudflare IUAM (Under Attack Mode)** challenges. Designed for web scraping, data extraction, and bot automation.
+Low-latency HTTP API for **Cloudflare Turnstile** and **Cloudflare IUAM (Under Attack Mode)**. Send a JSON request, get a token or clearance cookie back — typically in **1–4 seconds**.
 
----
+| Requests processed | Target uptime | Average solve time | Price |
+| :----------------: | :-----------: | :----------------: | :---: |
+| 50k+ | 99.9% | &lt; 3s | **$0.08 / 1k** |
 
-## 📸 Screenshot
-
-![Xsolve API Solver Screenshot](image.png)
-
----
-
-## 🔗 Links
-
-- **Website:** [https://xsolve.me](https://xsolve.me)
-- **Documentation:** [https://docs.xsolve.me/](https://docs.xsolve.me/)
+You only pay for successful solves.
 
 ---
 
-## ✨ Features
+## Request Example
 
-- 🚀 **High Speed:** Solves under **1-4s**
-- 🛡️ **Advanced Bypass:** Bypasses Turnstile (`task.turnstile`) and IUAM (`task.iuam`) defense layers.
-- 💳 **Pay-Per-Solve:** 100% success-only billing policy.
-- 🔌 **Simple Integration:** Integrate easily using HTTP requests in Python, JavaScript, Curl, Go, PHP, etc.
+![Xsolve request history showing Turnstile solves around 1.1–1.7s at $0.00008 each](image.png)
+
+Balance, API keys, and live request history live in one place: [xsolve.me](https://xsolve.me).
 
 ---
 
-## 💰 Pricing & Available Tasks
+## Features
 
-We offer high-performance solvers at competitive prices:
+- **Fast** — Typical solve time is 1–4 seconds
+- **Two task types** — Turnstile (`task.turnstile`) and IUAM (`task.iuam`)
+- **Pay for success only** — Failed solves are not billed
+- **Simple JSON API** — One `POST` to `https://api.xsolve.me/task`
+- **Proxy support** — HTTP, HTTPS, and SOCKS5
+- **Drop-in migration** — Coming from Solverify, NSLSolver, or CapSolver? Change the base URL and API key
 
-| Available Task           | Task Identifier  | Price (per 1k requests) |
-| :----------------------- | :--------------- | :---------------------- |
-| **Cloudflare Turnstile** | `task.turnstile` | **$0.08**               |
-| **Cloudflare IUAM**      | `task.iuam`      | **$0.08**               |
+---
 
-- ⚡ **Cost:** **$0.00008** per one solve
-- ✔️ **Only pay for successful solves**
-- 🪙 **Payment Method:** **Cryptocurrency**
+## How it works
 
-### 💳 Deposit Bonuses
+1. Create an account at [xsolve.me](https://xsolve.me) and copy your API key
+2. `POST` the challenge `url` (and `sitekey` for Turnstile) to `/task`
+3. Use the returned token or `cf_clearance` cookie in your request
 
-Get extra balance when you deposit more!
+---
 
-| Deposit Range | Bonus   | Example              |
-| :------------ | :------ | :------------------- |
-| Under $25     | 0%      | $10 → $10 balance    |
-| $25 – $49     | **20%** | $30 → $36 balance    |
-| $50 – $99     | **30%** | $75 → $97.50 balance |
-| $100 – $500   | **40%** | $200 → $280 balance  |
+## Pricing
 
-### 💰 Deposit Value Examples
+| Task | Identifier | Price |
+| ---- | ---------- | ----- |
+| Cloudflare Turnstile | `task.turnstile` | **$0.08 / 1k** |
+| Cloudflare IUAM | `task.iuam` | **$0.08 / 1k** |
 
-That's over **12,500** CAPTCHAs solved for just a single dollar!
+- **$0.00008** per successful solve
+- Unsuccessful solves are free
+- Payment: **cryptocurrency**
 
-| Deposit Amount | Bonus | Total Balance | Solves / Tokens   |
-| :------------- | :---- | :------------ | :---------------- |
-| **$1**         | —     | $1            | 12,500 (12.5k)    |
-| **$5**         | —     | $5            | 62,500 (62.5k)    |
-| **$25**        | +$5   | $30           | 375,000 (375k)    |
-| **$50**        | +$15  | $65           | 812,500 (812.5k)  |
-| **$100**       | +$40  | $140          | 1,750,000 (1.75m) |
-| **$500**       | +$200 | $700          | 8,750,000 (8.75m) |
+### Deposit bonuses
 
-## 🚀 Quick Integration (Python)
+| Deposit | Bonus | Example |
+| ------- | ----- | ------- |
+| Under $25 | — | $10 → $10 |
+| $25 – $49 | **20%** | $30 → $36 |
+| $50 – $99 | **30%** | $75 → $97.50 |
+| $100 – $500 | **40%** | $200 → $280 |
 
-To integrate our solver into your application, use the following simple Python example:
+### What $1 actually buys
+
+About **12,500** successful solves per dollar at the base rate.
+
+| Deposit | Bonus | Balance | Solves |
+| ------- | ----- | ------- | ------ |
+| $1 | — | $1 | 12,500 |
+| $5 | — | $5 | 62,500 |
+| $25 | +$5 | $30 | 375,000 |
+| $50 | +$15 | $65 | 812,500 |
+| $100 | +$40 | $140 | 1,750,000 |
+| $500 | +$200 | $700 | 8,750,000 |
+
+---
+
+## Migration
+
+If you already use Solverify, NSLSolver, or CapSolver, most integrations only need two changes:
+
+1. Base URL → `https://api.xsolve.me`
+2. API key → your Xsolve key
+
+See the [migration guide](https://docs.xsolve.me/migration).
+
+---
+
+## Quick start
+
+All requests use the same endpoint and header:
+
+```
+POST https://api.xsolve.me/task
+X-Api-Key: YOUR_API_KEY
+```
+
+### Turnstile
 
 ```python
 import requests
 
-url = "https://api.xsolve.me/task"
+response = requests.post(
+    "https://api.xsolve.me/task",
+    headers={"X-Api-Key": "YOUR_API_KEY"},
+    json={
+        "mode": "turnstile",
+        "url": "https://example.com",
+        "sitekey": "0x4AAAAAA...",
+    },
+)
 
-headers = {
-    "X-Api-Key": "YOUR_API_KEY",
-    "Content-Type": "application/json"
-}
-
-payload = {
-    "mode": "turnstile",
-    "url": "https://example.com",
-    "sitekey": "0x4AAAAAA..."
-}
-
-response = requests.post(url, headers=headers, json=payload)
 print(response.json())
 ```
 
-For full API documentation, other languages (Curl, JavaScript), and custom integrations, check our [Documentation](https://docs.xsolve.me/) or log in to your dashboard at [xsolve.me](https://xsolve.me).
+**Success**
+
+```json
+{
+  "token": "0.3g00PIzENb3goEq4-D.....",
+  "elapsed": "1.55s",
+  "status": "completed"
+}
+```
+
+Optional Turnstile fields when the widget provides them:
+
+| Field | Required | Description |
+| ----- | -------- | ----------- |
+| `mode` | yes | Must be `turnstile` |
+| `url` | yes | Page that hosts the widget |
+| `sitekey` | yes | Turnstile sitekey |
+| `action` | no | Widget `action`, e.g. `login` |
+| `cdata` | no | Widget `cData` |
+| `proxy` | no | `http://`, `https://`, or `socks5://` |
+
+### IUAM (Under Attack Mode)
+
+A proxy is **required** for IUAM tasks.
+
+```python
+import requests
+
+response = requests.post(
+    "https://api.xsolve.me/task",
+    headers={"X-Api-Key": "YOUR_API_KEY"},
+    json={
+        "mode": "iuam",
+        "url": "https://example.com",
+        "proxy": "socks5://user:pass@host:port",
+    },
+)
+
+print(response.json())
+```
+
+**Success**
+
+```json
+{
+  "headers": {
+    "Cookie": "cf_clearance=cZ3ow5J194Lyer0BTI64.....;",
+    "User-Agent": "Mozilla/5.0 ..."
+  },
+  "ip": "127.0.0.1",
+  "elapsed": "1.55s",
+  "status": "completed"
+}
+```
+
+Replay the returned `Cookie` and `User-Agent` on subsequent requests through the **same proxy**.
+
+### cURL
+
+```bash
+curl -X POST https://api.xsolve.me/task \
+  -H "X-Api-Key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "mode": "turnstile",
+    "url": "https://example.com",
+    "sitekey": "0x4AAAAAA..."
+  }'
+```
+
+More languages (JavaScript, Go, Java, Rust) and the full field reference: [docs.xsolve.me](https://docs.xsolve.me/).
 
 ---
 
-## 💬 Community & Support
+## Support
 
-- **Telegram Channel:** [https://t.me/xsolveupdates](https://t.me/xsolveupdates)
-
-* **Discord Server:** [https://discord.gg/eM6wqY7z53](https://discord.gg/eM6wqY7z53)
+| | |
+| --- | --- |
+| Website | [xsolve.me](https://xsolve.me) |
+| Documentation | [docs.xsolve.me](https://docs.xsolve.me/) |
+| Telegram | [t.me/xsolveupdates](https://t.me/xsolveupdates) |
+| Discord | [discord.gg/eM6wqY7z53](https://discord.gg/eM6wqY7z53) |
