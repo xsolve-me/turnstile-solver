@@ -5,44 +5,48 @@
 [![Telegram](https://img.shields.io/badge/Telegram-@xsolveupdates-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/xsolveupdates)
 [![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/eM6wqY7z53)
 
-Low-latency HTTP API for **Cloudflare Turnstile** and **Cloudflare IUAM (Under Attack Mode)**. Send a JSON request, get a token or clearance cookie back, typically in **1-4 seconds**.
+HTTP API for **Cloudflare Turnstile** and **Cloudflare IUAM (Under Attack Mode)**.
+
+Send a JSON request. Get a Turnstile token or a `cf_clearance` cookie back, typically in **1–4 seconds**. One endpoint, one API key, one price.
 
 | Requests processed | Target uptime | Average solve time | Price |
 | :----------------: | :-----------: | :----------------: | :---: |
-| 500m+ | 99.9% | &lt; 3s | **$0.08 / 1k** |
+| 500m+ | 99.9% | < 3s | **$0.08 / 1k** |
 
-You only pay for successful solves.
+Failed solves are not billed.
 
 ---
 
-## Request Example
+## Dashboard
 
-![Xsolve request history showing Turnstile solves around 1.1-1.7s at $0.00008 each](image.png)
+![Xsolve request history: Turnstile solves completing in 1.1–1.7s at $0.00008 each](image.png)
 
-Balance, API keys, and live request history live in one place: [xsolve.me](https://xsolve.me).
+Create an account, copy your API key, and watch live request history at [xsolve.me](https://xsolve.me).
 
 ---
 
 ## Features
 
-- **Fast:** Typical solve time is 1-4 seconds
+- **Fast:** typical solve time is 1–4 seconds
 - **Two task types:** Turnstile (`task.turnstile`) and IUAM (`task.iuam`)
-- **Pay for success only:** Failed solves are not billed
-- **Simple JSON API:** One `POST` to `https://api.xsolve.me/task`
+- **Pay for success only:** unsuccessful solves are free
+- **One JSON endpoint:** `POST https://api.xsolve.me/task`
 - **Proxy support:** HTTP, HTTPS, and SOCKS5
-- **Drop-in migration:** Coming from Solverify, NSLSolver, or CapSolver? Change the base URL and API key
+- **Drop-in migration:** swap the base URL and API key if you already use Solverify, NSLSolver, CapSolver, 2Captcha, Anti-Captcha, and similar solvers
 
 ---
 
 ## How it works
 
-1. Create an account at [xsolve.me](https://xsolve.me) and copy your API key
-2. `POST` the challenge `url` (and `sitekey` for Turnstile) to `/task`
-3. Use the returned token or `cf_clearance` cookie in your request
+1. Create an account at [xsolve.me](https://xsolve.me) and copy your API key.
+2. `POST` the challenge `url` (and `sitekey` for Turnstile) to `/task`.
+3. Use the returned token, or replay the `cf_clearance` cookie and `User-Agent` through the same proxy.
 
 ---
 
 ## Pricing
+
+One flat rate for both task types. No tiers.
 
 | Task | Identifier | Price |
 | ---- | ---------- | ----- |
@@ -57,10 +61,10 @@ Balance, API keys, and live request history live in one place: [xsolve.me](https
 
 | Deposit | Bonus | Example |
 | ------- | ----- | ------- |
-| Under $25 | - | $10 -> $10 |
-| $25 - $49 | **20%** | $30 -> $36 |
-| $50 - $99 | **30%** | $75 -> $97.50 |
-| $100 - $500 | **40%** | $200 -> $280 |
+| Under $25 | - | $10 → $10 |
+| $25 – $49 | **20%** | $30 → $36 |
+| $50 – $99 | **30%** | $75 → $97.50 |
+| $100 – $500 | **40%** | $200 → $280 |
 
 ### What $1 actually buys
 
@@ -79,7 +83,7 @@ About **12,500** successful solves per dollar at the base rate.
 
 ## Migration
 
-If you already use Solverify, NSLSolver, or CapSolver, most integrations only need two changes:
+Coming from Solverify, NSLSolver, CapSolver, 2Captcha, Anti-Captcha, CapMonster, NextCaptcha, EzCaptcha, NopeCHA, or DeathByCaptcha? Most integrations only need two changes:
 
 1. Base URL → `https://api.xsolve.me`
 2. API key → your Xsolve key
@@ -92,9 +96,10 @@ See the [migration guide](https://docs.xsolve.me/migration).
 
 All requests use the same endpoint and header:
 
-```
+```http
 POST https://api.xsolve.me/task
 X-Api-Key: YOUR_API_KEY
+Content-Type: application/json
 ```
 
 ### Turnstile
@@ -125,8 +130,6 @@ print(response.json())
 }
 ```
 
-Optional Turnstile fields when the widget provides them:
-
 | Field | Required | Description |
 | ----- | -------- | ----------- |
 | `mode` | yes | Must be `turnstile` |
@@ -135,6 +138,8 @@ Optional Turnstile fields when the widget provides them:
 | `action` | no | Widget `action`, e.g. `login` |
 | `cdata` | no | Widget `cData` |
 | `proxy` | no | `http://`, `https://`, or `socks5://` |
+
+Send `action` and `cdata` only when the target widget provides them.
 
 ### IUAM (Under Attack Mode)
 
@@ -170,7 +175,13 @@ print(response.json())
 }
 ```
 
-Replay the returned `Cookie` and `User-Agent` on subsequent requests through the **same proxy**.
+Replay the returned `Cookie` and `User-Agent` on later requests through the **same proxy**. The clearance is tied to that IP and user agent.
+
+| Field | Required | Description |
+| ----- | -------- | ----------- |
+| `mode` | yes | Must be `iuam` |
+| `url` | yes | IUAM challenge page URL |
+| `proxy` | yes | `http://`, `https://`, or `socks5://` |
 
 ### cURL
 
@@ -185,7 +196,18 @@ curl -X POST https://api.xsolve.me/task \
   }'
 ```
 
-More languages (JavaScript, Go, Java, Rust) and the full field reference: [docs.xsolve.me](https://docs.xsolve.me/).
+### Errors
+
+Failed solves return a JSON body and are **not billed**.
+
+```json
+{
+  "message": "An error occurred",
+  "status": "failed"
+}
+```
+
+JavaScript, Go, Java, Rust examples and the full field reference: [docs.xsolve.me](https://docs.xsolve.me/).
 
 ---
 
